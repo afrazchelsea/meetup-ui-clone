@@ -1,5 +1,34 @@
 import Head from "next/head";
 import Avatar from "../components/Avatar";
+import Comment from "../components/Comment";
+
+const comments = [
+  {
+    id: "vnegbe",
+    name: "Aditya Agarwal",
+    comment: `Since this is online meetup, can we shift the time early in the day? Then it's easier for me to attend from
+    the other side of the globe. If this time works for everyone then it's ok`,
+    replies: [
+      {
+        id: "fkguehge",
+        name: "Shad Mirza",
+        comment: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut quos non debitis cupiditate, voluptate, est, perspiciatis laboriosam corrupti autem quibusdam dolores. Magnam, ab eos numquam eum cum possimus labore impedit?`,
+        replies: [
+          {
+            id: "bnrugrge",
+            name: "Aditya Agarwal",
+            comment: `works for me`,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "egihuiee",
+    name: "Michael Scott",
+    comment: "I'm the best boss.",
+  },
+];
 
 const Home = () => (
   <div>
@@ -35,14 +64,14 @@ const Home = () => (
         </div>
       </div>
     </nav>
-    <header className="px-32 py-4 ">
+    <header className="px-32 py-4 flex justify-between items-end">
       <div>
         <span className="text-gray-600">Saturday, May 16, 2020</span>
         <h1 className="text-3xl font-black mb-4">react online meetup #02</h1>
         <div>
           <Avatar />
           <div>
-            <p>Hosted by</p>
+            <p className="mt-2">Hosted by</p>
             <h6 className="font-medium">Afraz Momin</h6>
           </div>
         </div>
@@ -62,6 +91,7 @@ const Home = () => (
             <p className="mb-3">
               This is online meetup which you can join with Zoom/Youtube Live.
             </p>
+            <br />
             <p>
               If you like to present in this meetup propose a talk{" "}
               <a
@@ -74,16 +104,16 @@ const Home = () => (
           </section>
           <section className="mb-10">
             <div className="flex justify-between">
-              <h4 className="font-medium text-xl mb-5">Attendees</h4>
+              <h4 className="font-medium text-xl mb-5">Attendees (69)</h4>
               <button className="text-blue-500">See all</button>
             </div>
             <ul className="grid grid-cols-4 gap-4">
               {Array.from({ length: 8 }).map((_, index) => (
                 <li
                   key={index}
-                  className="bg-white rounded-lg flex flex-col items-center py-4  "
+                  className="bg-white rounded-lg flex flex-col items-center py-4 hover:shadow-md"
                 >
-                  <Avatar />
+                  <Avatar size="lg" alt="User" className="mb-4" />
                   <h6 className="font-bold text-sm">Lawerance D</h6>
                   <p className="text-sm text-gray-600">Member</p>
                   <p className="text-sm text-gray-600">8 shared groups</p>
@@ -91,9 +121,38 @@ const Home = () => (
               ))}
             </ul>
           </section>
+          <section className="">
+            <h4 className="font-medium text-xl mb-5">Comments</h4>
+            <div>
+              {comments.map((comment) => (
+                <Comment key={comment.id} data={comment} />
+              ))}
+            </div>
+          </section>
         </div>
+        <aside className="">
+          <div>
+            <img
+              src="https://secure.meetupstatic.com/photos/event/b/6/c/8/highres_488566792.jpeg"
+              alt=""
+            />
+            <div>
+              <h6>ReactJS Bangalore</h6>
+              <p>Public Group</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <span>o</span>
+              <div>something</div>
+            </div>
+            <div>
+              <span>o</span>
+              <div>soemthing</div>
+            </div>
+          </div>
+        </aside>
       </div>
-      <aside className="w-4/12"></aside>
     </main>
     <footer className="px-32"></footer>
   </div>
